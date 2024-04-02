@@ -18,9 +18,8 @@ import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  username: z.string(),
+  password : z.string()
 })
 
 export function LoginForm() {
@@ -28,6 +27,7 @@ export function LoginForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: "",
+      password : ""
     },
   })
 
@@ -52,11 +52,21 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Username" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+         <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input{...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
