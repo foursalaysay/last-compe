@@ -22,6 +22,8 @@ export const siginInWithCredentials = async (
       password,
       redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
+
+    return { success: "Logged in" };
   } catch (error) {
     // @TODO: handle error
     if (error instanceof AuthError) {
