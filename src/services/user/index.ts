@@ -7,7 +7,6 @@ type loginProps = {
   password?: string | undefined;
 };
 
-
 export const getUserByEmail = async (email: string) => {
   try {
     const user = db.user.findUnique({ where: { email } });
@@ -24,6 +23,7 @@ export const getUserById = async (id: string) => {
     return null;
   }
 };
+
 
 // export const login = async (credentials: loginProps) => {
 //   const { password = "", email = "" } = credentials;
@@ -50,7 +50,6 @@ export const getUserById = async (id: string) => {
 //     throw new Error((err as Error).message);
 //   }
 // };
-
 
 // export const checkEmailExists = async (email: string): Promise<boolean> => {
 //   const user = await User.findOne({ email });
