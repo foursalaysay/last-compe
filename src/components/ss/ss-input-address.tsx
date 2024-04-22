@@ -1,53 +1,53 @@
-"use client";
+"use client"
 import {
   Command,
   CommandGroup,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Input } from "@/components/ui/input";
-import { env } from "process";
-import React, { type KeyboardEvent, useState } from "react";
-import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+} from "@/components/ui/command"
+import { Input } from "@/components/ui/input"
+import { env } from "process"
+import React, { type KeyboardEvent, useState } from "react"
+import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService"
 
 type tGooglePredictionManual = {
-  place_id: string;
-  description: string;
-};
+  place_id: string
+  description: string
+}
 
 type SSInputAddressProps = {
-  value: string | undefined;
-  onChange: (value: string) => void;
-  disabled?: boolean;
-};
+  value: string | undefined
+  onChange: (value: string) => void
+  disabled?: boolean
+}
 
 export const SSInputAddress = ({
   disabled = false,
   value = undefined,
   onChange,
 }: SSInputAddressProps) => {
-  const [placeListOpen, setPlaceListOpen] = useState(false);
+  const [placeListOpen, setPlaceListOpen] = useState(false)
   const { placePredictions, getPlacePredictions } = usePlacesService({
     apiKey: env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY,
     debounce: 500,
-  });
+  })
 
   // dont know if these are needed
   const handlePlaceValue = (value: string) => {
-    if (!placeListOpen) setPlaceListOpen(true);
-    getPlacePredictions({ input: value });
-    onChange(value);
-  };
+    if (!placeListOpen) setPlaceListOpen(true)
+    getPlacePredictions({ input: value })
+    onChange(value)
+  }
 
   const handleClose = (e: KeyboardEvent<HTMLInputElement>) => {
-    e.key === "Escape" && setPlaceListOpen(false);
-    e.key === "Tab" && setPlaceListOpen(false);
-  };
+    e.key === "Escape" && setPlaceListOpen(false)
+    e.key === "Tab" && setPlaceListOpen(false)
+  }
 
   const handleSelect = (placeName: string) => {
-    setPlaceListOpen(false);
-    onChange(placeName);
-  };
+    setPlaceListOpen(false)
+    onChange(placeName)
+  }
 
   return (
     <Command className="relative overflow-visible">
@@ -85,5 +85,5 @@ export const SSInputAddress = ({
         </CommandList>
       )}
     </Command>
-  );
-};
+  )
+}

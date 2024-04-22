@@ -290,4 +290,4 @@ export const skills = [
     value: "availabilityForEmergencies",
     category: "Emergency Repairs",
   },
-];
+]

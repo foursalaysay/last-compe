@@ -1,16 +1,14 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import RegisterForm from "./_components/register-form";
+import RegisterForm from "./_components/register-form"
 
 export const metadata: Metadata = {
   title: "Sign up",
   description:
     "Sign up for an account to access exclusive features and content.",
-};
+}
 
 export default async function SignupPage() {
   return (
@@ -60,5 +58,5 @@ export default async function SignupPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

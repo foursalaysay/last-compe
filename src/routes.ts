@@ -4,14 +4,14 @@
  * @type {string[]}
  */
 
-export const publicRoutes: string[] = ["/"];
+export const publicRoutes: string[] = ["/"]
 
 /**
  *  An array of routes that are use for authentication
  * These routes will redirect login in users to the /overview**
  * @type {string[]}
  */
-export const authRoutes: string[] = ["/login", "/signup"];
+export const authRoutes: string[] = ["/login", "/signup"]
 
 /**
  *
@@ -20,10 +20,10 @@ export const authRoutes: string[] = ["/login", "/signup"];
  *  purposes
  * @type {string[]}
  */
-export const apiAuthPrefix: string = "/api/auth";
+export const apiAuthPrefix: string = "/api/auth"
 
 /**
  *  The default redirect path after loging in
  * @type {string[]}
  */
-export const DEFAULT_LOGIN_REDIRECT: string = "/overview";
+export const DEFAULT_LOGIN_REDIRECT: string = "/dashboard/overview"
