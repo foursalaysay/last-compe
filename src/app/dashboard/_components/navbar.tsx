@@ -24,7 +24,10 @@ const Navbar = () => {
   return (
     <div className="sticky w-full border-b px-5 py-4">
       <div className="flex justify-between">
-        <div className="w-1/2">
+        <div className="flex w-1/2 items-center">
+          <h1 className="text-lg">
+            Welcome, <span className=" font-bold">Michael Padin</span>
+          </h1>
           {session.data?.user.role === "customer" &&
             pathname.includes("overview") && <SearchProviderInput />}
         </div>

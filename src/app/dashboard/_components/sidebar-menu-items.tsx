@@ -3,12 +3,15 @@ import { ScrollArea } from "@radix-ui/react-scroll-area"
 import Link from "next/link"
 import React from "react"
 import {
-  BadgeAlert,
+  Bell,
   Briefcase,
-  Calendar,
+  Building2,
+  HandHeart,
   Home,
-  Inbox,
+  HomeIcon,
   LucideIcon,
+  MessageCircle,
+  SendHorizontal,
   Settings,
   Users,
 } from "lucide-react"
@@ -16,6 +19,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { useSession } from "next-auth/react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface IDashProps {
   Icon: LucideIcon
@@ -34,28 +38,63 @@ const DashIcon: React.FC<IDashProps> = ({
 
 const SidebarMenuItems: React.FC = () => {
   const pathname = usePathname()
-  const session = useSession()
-  const { role } = session.data?.user || {}
+  const { status, data } = useSession({
+    required: true,
+  })
 
+  if (status === "loading") {
+    return (
+      <div className="h-[calc(100vh-162px)] px-4">
+        <ul className="flex flex-col gap-4 ">
+          <li className="w-full ">
+            <div className="">
+              <p className="mb-4 text-sm font-semibold ">Loading...</p>
+              <div className="flex flex-col gap-4">
+                {[1, 2, 3, 4, 5].map((_, index2) => (
+                  <Skeleton
+                    key={index2 + 1}
+                    className="flex animate-pulse flex-row justify-between rounded-md   p-2 px-4 transition-colors"
+                  >
+                    <Skeleton className="flex items-center gap-2 ">
+                      <Skeleton className="h-6 w-6 rounded-full bg-gray-300"></Skeleton>
+                      <Skeleton className="h-4 w-20 rounded bg-gray-300"></Skeleton>
+                    </Skeleton>
+                  </Skeleton>
+                ))}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    )
+  }
+
+  const role = data?.user.role
   const sidebarMenu = [
     {
       groupName: "Working Space",
       items: [
-        { name: "Overview", url: "overview", icon: Home },
+        { name: "Overview", url: "overview", icon: HomeIcon },
         // ...(role === "customer"
         //   ? [{ name: "Providers", url: "providers", icon: Briefcase }]
         //   : []),
         // { name: "Goods", url: "goods", icon: Inbox },
         ...(role === "ORGANIZATION" || role === "ADMIN"
-          ? [{ name: "Donations", url: "donations", icon: Briefcase }]
+          ? [{ name: "Donations", url: "donations", icon: HandHeart }]
           : []),
-        ...(role !== "admin"
-          ? [{ name: "Appointments", url: "appointments", icon: Calendar }]
-          : []),
+        // ...(role !== "admin"
+        //   ? [{ name: "Appointments", url: "appointments", icon: Calendar }]
+        //   : []),
         ...(role === "admin"
           ? [{ name: "Users", url: "users", icon: Users }]
           : []),
-        { name: "Reports", url: "reports", icon: BadgeAlert },
+        { name: "Organizations", url: "organizations", icon: Building2 },
+        { name: "Messages", url: "messages", icon: MessageCircle },
+        { name: "Notifications", url: "notifications", icon: Bell },
+
+        ...(role === "admin"
+          ? [{ name: "Reports", url: "reports", icon: Users }]
+          : []),
       ],
     },
     {
@@ -100,7 +139,7 @@ const SidebarMenuItems: React.FC = () => {
               <div className="flex flex-col gap-4">
                 {group.items.map((item, index2) => (
                   <Link
-                    href={`/${item.url as string}`}
+                    href={`/dashboard/${item.url as string}`}
                     key={index2 + 1}
                     className={cn(
                       buttonVariants({
