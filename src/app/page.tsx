@@ -2,9 +2,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { MapPinned } from "lucide-react"
-import { Phone } from "lucide-react"
-import { MailOpen } from "lucide-react"
+import { MapPinned, Phone, MailOpen } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
