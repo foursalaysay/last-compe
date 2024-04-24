@@ -1,28 +1,21 @@
-import NextAuth from "next-auth/next";
-import bcrypt from "bcryptjs";
-import { db } from "@/lib/db";
-
-type loginProps = {
-  email?: string | undefined;
-  password?: string | undefined;
-};
+import { db } from "@/lib/db"
 
 export const getUserByEmail = async (email: string) => {
   try {
-    const user = db.user.findUnique({ where: { email } });
-    return user;
+    const user = db.user.findUnique({ where: { email } })
+    return user
   } catch (error) {
-    return null;
+    return null
   }
-};
+}
 export const getUserById = async (id: string) => {
   try {
-    const user = db.user.findUnique({ where: { id } });
-    return user;
+    const user = db.user.findUnique({ where: { id } })
+    return user
   } catch (error) {
-    return null;
+    return null
   }
-};
+}
 
 
 // export const login = async (credentials: loginProps) => {

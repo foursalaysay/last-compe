@@ -1,16 +1,18 @@
-import React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
-import { FormControl } from "../ui/form";
-import { Calendar } from "../ui/calendar";
-import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import React from "react"
+
+import { cn } from "@/lib/utils"
+
+import { Button } from "../ui/button"
+import { Calendar } from "../ui/calendar"
+import { FormControl } from "../ui/form"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 
 type SSDatePickerProps = {
-  value?: Date;
-  onChange: (value: Date) => void;
-};
+  value?: Date
+  onChange: (value: Date) => void
+}
 
 export const SSDatePicker = ({ value, onChange }: SSDatePickerProps) => {
   return (
@@ -21,7 +23,7 @@ export const SSDatePicker = ({ value, onChange }: SSDatePickerProps) => {
             variant={"outline"}
             className={cn(
               "w-[240px] pl-3 text-left font-normal",
-              !value && "text-muted-foreground"
+              !value && "text-muted-foreground",
             )}
           >
             {value ? format(value, "PPP") : <span>Pick a date</span>}
@@ -38,5 +40,5 @@ export const SSDatePicker = ({ value, onChange }: SSDatePickerProps) => {
         />
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}

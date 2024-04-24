@@ -1,37 +1,39 @@
-"use client";
+"use client"
+import { Check, ChevronsUpDown } from "lucide-react"
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command"
+import { Input } from "@/components/ui/input"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandInput,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandSeparator,
-  CommandList,
-} from "@/components/ui/command";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { FormControl } from "../ui/form";
+} from "@/components/ui/popover"
+import { cn } from "@/lib/utils"
+
+import { FormControl } from "../ui/form"
 
 interface SSComboboxProps {
   listOptions: {
-    label: string;
-    value: string;
-    metadata?: string;
-  }[];
-  onChange: (value: string) => void;
-  value?: string;
-  placeholder: string;
-  disabled?: boolean;
-  showOtherValue?: boolean;
-  showSearchBar?: boolean;
+    label: string
+    value: string
+    metadata?: string
+  }[]
+  onChange: (value: string) => void
+  value?: string
+  placeholder: string
+  disabled?: boolean
+  showOtherValue?: boolean
+  showSearchBar?: boolean
 }
 
 export const SSCombobox = ({
@@ -43,8 +45,8 @@ export const SSCombobox = ({
   showOtherValue = false,
   showSearchBar = true,
 }: SSComboboxProps) => {
-  const [open, setOpen] = useState(false);
-  const [otherValue, setOtherValue] = useState("");
+  const [open, setOpen] = useState(false)
+  const [otherValue, setOtherValue] = useState("")
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -73,14 +75,14 @@ export const SSCombobox = ({
                   value={option.value}
                   key={option.value}
                   onSelect={(value) => {
-                    onChange(value);
-                    setOpen(false);
+                    onChange(value)
+                    setOpen(false)
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      option.value === value ? "opacity-100" : "opacity-0"
+                      option.value === value ? "opacity-100" : "opacity-0",
                     )}
                   />
                   {option.label}
@@ -101,5 +103,5 @@ export const SSCombobox = ({
         )}
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}

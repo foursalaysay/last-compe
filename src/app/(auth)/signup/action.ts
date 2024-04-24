@@ -1,23 +1,25 @@
-"use server";
-import { RegisterSchema, RegisterType } from "./_types";
-import bcryptjs from "bcryptjs";
-import { db } from "@/lib/db";
-import { getUserByEmail } from "@/services/user";
+"use server"
+import { hash } from "bcryptjs"
+
+import { db } from "@/lib/db"
+import { getUserByEmail } from "@/services/user"
+
+import { RegisterSchema, RegisterType } from "./_types"
 
 export const register = async (data: RegisterType) => {
-  const parsedData = RegisterSchema.safeParse(data);
+  const parsedData = RegisterSchema.safeParse(data)
 
   if (!parsedData.success) {
-    return { error: "Invalid fields" };
+    return { error: "Invalid fields" }
   }
 
-  const { email, password, name, confirmPassword } = parsedData.data;
+  const { email, password, name } = parsedData.data
 
-  const hashedPassword = await bcryptjs.hash(password, 10);
+  const hashedPassword = await hash(password, 10)
 
-  const existingUser = await getUserByEmail(email);
+  const existingUser = await getUserByEmail(email)
 
-  if (existingUser) return { error: "User already exists" };
+  if (existingUser) return { error: "User already exists" }
 
   await db.user.create({
     data: {
@@ -27,13 +29,13 @@ export const register = async (data: RegisterType) => {
       address: "test",
       role: "ADMIN",
     },
-  });
+  })
 
   /**
    * @todo Send email to user
    */
 
-  return { success: "User created" };
-};
+  return { success: "User created" }
+}
 
 // export const sigInWithGoogle = async () => await signIn("google");

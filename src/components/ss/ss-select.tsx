@@ -1,24 +1,24 @@
+import { FormControl } from "@/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { FormControl } from "@/components/ui/form";
+} from "@/components/ui/select"
 
 interface SSSelectProps {
   listOptions: {
-    label: string;
-    value: string;
-    metadata?: string;
-    description?: string;
-  }[];
-  onChange: (value: string) => void;
-  value?: string;
-  placeholder: string;
-  disabled?: boolean;
-  showTooltip?: boolean;
+    label: string
+    value: string
+    metadata?: string
+    description?: string
+  }[]
+  onChange: (value: string) => void
+  value?: string
+  placeholder: string
+  disabled?: boolean
+  showTooltip?: boolean
 }
 
 export const SSSelect = ({
@@ -44,5 +44,5 @@ export const SSSelect = ({
         ))}
       </SelectContent>
     </Select>
-  );
-};
+  )
+}

@@ -1,5 +1,11 @@
-"use client";
-import { Button } from "@/components/ui/button";
+"use client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2 } from "lucide-react"
+import Link from "next/link"
+import React, { useTransition } from "react"
+import { useForm } from "react-hook-form"
+
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -7,40 +13,35 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import React, { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
-import { siginInWithCredentials } from "../action";
-import { LoginSchema, LoginType } from "../_types";
-import Link from "next/link";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
+import { LoginSchema, LoginType } from "../_types"
+import { siginInWithCredentials } from "../action"
 
 const LoginForm = () => {
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
+  const [isPending, startTransition] = useTransition()
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
-  });
+  })
 
   const onSubmit = async (data: LoginType) => {
     startTransition(() => {
       siginInWithCredentials(data).then((res) => {
-        if (res.success) {
-          toast.success(res.success);
-        } else {
-          toast.error(res.error);
-        }
-      });
-    });
-  };
+        // if (res?.success) {
+        //   toast.success(res.success);
+        // } else {
+        //   toast.error(res.error);
+        // }
+
+        console.log(res)
+      })
+    })
+  }
 
   return (
     <Form {...form}>
@@ -87,14 +88,14 @@ const LoginForm = () => {
             variant="outline"
             type="button"
             className="w-full"
-            onClick={() => 'login'}
+            onClick={() => "login"}
           >
             Login with Google
           </Button>
         </fieldset>
       </form>
     </Form>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

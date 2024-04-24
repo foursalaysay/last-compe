@@ -1,7 +1,11 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+"use client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2 } from "lucide-react"
+import React, { useTransition } from "react"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -9,25 +13,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import React, { startTransition, useTransition } from "react";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { RegisterType, RegisterSchema } from "../_types";
-import { SSInputAddress } from "@/components/ss/ss-input-address";
-import { register } from "../action";
+import { RegisterSchema, RegisterType } from "../_types"
+import { register } from "../action"
 
 //THIS SHOULD BE FETCH FROM ADMIN
 
@@ -41,7 +31,7 @@ import { register } from "../action";
 // }
 
 const RegisterForm = () => {
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition()
   const form = useForm<RegisterType>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -50,19 +40,19 @@ const RegisterForm = () => {
       password: "",
       confirmPassword: "",
     },
-  });
+  })
 
   const onSubmit = async (data: RegisterType) => {
     startTransition(() => {
       register(data).then((res) => {
         if (res.success) {
-          toast.success(res.success);
+          toast.success(res.success)
         } else {
-          toast.error(res.error);
+          toast.error(res.error)
         }
-      });
-    });
-  };
+      })
+    })
+  }
 
   return (
     <Form {...form}>
@@ -225,7 +215,7 @@ const RegisterForm = () => {
         </fieldset>
       </form>
     </Form>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm
