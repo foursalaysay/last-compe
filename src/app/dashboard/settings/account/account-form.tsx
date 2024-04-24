@@ -1,10 +1,13 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Checkbox } from "@/components/ui/checkbox"
 
+import { SSInputAddress } from "@/components/ss/ss-input-address"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Form,
   FormControl,
@@ -15,13 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-
-import { Button } from "@/components/ui/button"
-
-import { toast } from "@/components/ui/use-toast"
-import { MeInputAddress } from "@/components/me/me-input-address"
 import { Separator } from "@/components/ui/separator"
-import { useSession } from "next-auth/react"
+import { toast } from "@/components/ui/use-toast"
 
 export const skills = [
   {
@@ -63,7 +61,7 @@ const accountFormSchema = z.object({
       message: "Invalid contact number format",
     },
   ),
-  role: z.enum(["service_provider", "customer", "admin"]),
+  role: z.enum(["admin", "donor", "donee"]),
   skills: z
     .array(z.string())
     .refine((value) => value.some((item) => item), {
@@ -86,9 +84,10 @@ export function AccountForm() {
   const session = useSession()
   console.log(session.data?.user)
 
-  const { fullName, contactNumber, address, role } = session.data?.user || {}
+  const { address, role } = session.data?.user || {}
 
-  console.log({ fullName, contactNumber, address, role })
+  const fullName = "John Doe"
+  const contactNumber = "09123456789"
 
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
@@ -96,7 +95,7 @@ export function AccountForm() {
       fullName,
       address,
       contactNumber,
-      role,
+      role: "admin",
       // skills : skills,
     },
   })
@@ -143,7 +142,7 @@ export function AccountForm() {
             <FormItem>
               <FormLabel>Address</FormLabel>
               <FormControl>
-                <MeInputAddress value={field.value} onChange={field.onChange} />
+                <SSInputAddress value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

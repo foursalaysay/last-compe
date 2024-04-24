@@ -1,4 +1,8 @@
 "use client"
+import { env } from "process"
+import React, { type KeyboardEvent, useState } from "react"
+import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService"
+
 import {
   Command,
   CommandGroup,
@@ -6,9 +10,6 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { Input } from "@/components/ui/input"
-import { env } from "process"
-import React, { type KeyboardEvent, useState } from "react"
-import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService"
 
 type tGooglePredictionManual = {
   place_id: string

@@ -1,11 +1,13 @@
+import { HandHeart } from "lucide-react"
+import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { HandHeart } from "lucide-react"
-import Link from "next/link"
+
+import { sampleData } from "./_components/data"
 import { DataTable } from "./_components/data-table"
 import { donationColumns } from "./_components/donation-columns"
-import { sampleData } from "./_components/data"
 
 const DonationsDonorView = () => {
   return (

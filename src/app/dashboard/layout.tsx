@@ -1,8 +1,11 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
 import Link from "next/link"
+
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+import Navbar from "./_components/navbar"
 import Profile from "./_components/profile"
 import SidebarMenuItems from "./_components/sidebar-menu-items"
-import Navbar from "./_components/navbar"
+
 export default function RootLayout({
   children,
 }: {

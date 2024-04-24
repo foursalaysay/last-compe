@@ -1,13 +1,11 @@
 "use client"
 
 import { Search } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
 import Link from "next/link"
-import { signOut, useSession } from "next-auth/react"
-import ModeToggle from "./mode-toggle"
 import { usePathname } from "next/navigation"
-import SearchProviderInput from "./search-provider-input"
+import { signOut, useSession } from "next-auth/react"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+import ModeToggle from "./mode-toggle"
+import SearchProviderInput from "./search-provider-input"
 
 const Navbar = () => {
   const session = useSession()

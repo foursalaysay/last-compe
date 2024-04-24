@@ -1,7 +1,8 @@
 "use client"
+import { AvatarImage } from "@radix-ui/react-avatar"
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AvatarImage } from "@radix-ui/react-avatar"
 
 export const TopDonee = () => {
   return (

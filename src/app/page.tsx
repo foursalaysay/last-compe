@@ -1,13 +1,10 @@
 "use client"
+import { MailOpen, MapPinned, Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
-import { MapPinned, Phone, MailOpen } from "lucide-react"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils"
 
 interface CardContent {
   avatarSrc: string

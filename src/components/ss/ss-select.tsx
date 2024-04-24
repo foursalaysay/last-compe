@@ -1,3 +1,4 @@
+import { FormControl } from "@/components/ui/form"
 import {
   Select,
   SelectContent,
@@ -5,7 +6,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { FormControl } from "@/components/ui/form"
 
 interface SSSelectProps {
   listOptions: {

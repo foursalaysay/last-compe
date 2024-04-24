@@ -1,8 +1,9 @@
-import NextAuth, { DefaultSession } from "next-auth"
-import authConfig from "./auth.config"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { db } from "./lib/db"
+import NextAuth, { DefaultSession } from "next-auth"
 import { Adapter } from "next-auth/adapters"
+
+import authConfig from "./auth.config"
+import { db } from "./lib/db"
 
 declare module "next-auth" {
   /**

@@ -1,11 +1,12 @@
+import { Star } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
-import { Star } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
 
 const DonationCard = () => {
   return (

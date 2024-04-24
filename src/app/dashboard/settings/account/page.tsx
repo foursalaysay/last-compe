@@ -1,6 +1,8 @@
-import { Separator } from "@/components/ui/separator"
-import { AccountForm } from "./account-form"
 import { Suspense } from "react"
+
+import { Separator } from "@/components/ui/separator"
+
+import { AccountForm } from "./account-form"
 
 export default function SettingsAccountPage() {
   return (

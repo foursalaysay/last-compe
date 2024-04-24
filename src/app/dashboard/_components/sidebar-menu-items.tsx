@@ -1,7 +1,5 @@
 "use client"
 import { ScrollArea } from "@radix-ui/react-scroll-area"
-import Link from "next/link"
-import React from "react"
 import {
   Bell,
   Briefcase,
@@ -15,11 +13,14 @@ import {
   Settings,
   Users,
 } from "lucide-react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
 import { useSession } from "next-auth/react"
+import React from "react"
+
+import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
 
 interface IDashProps {
   Icon: LucideIcon

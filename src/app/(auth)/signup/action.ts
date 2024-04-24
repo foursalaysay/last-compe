@@ -1,8 +1,10 @@
 "use server"
-import { RegisterSchema, RegisterType } from "./_types"
-import bcryptjs from "bcryptjs"
+import { hash } from "bcryptjs"
+
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/services/user"
+
+import { RegisterSchema, RegisterType } from "./_types"
 
 export const register = async (data: RegisterType) => {
   const parsedData = RegisterSchema.safeParse(data)
@@ -13,7 +15,7 @@ export const register = async (data: RegisterType) => {
 
   const { email, password, name } = parsedData.data
 
-  const hashedPassword = await bcryptjs.hash(password, 10)
+  const hashedPassword = await hash(password, 10)
 
   const existingUser = await getUserByEmail(email)
 

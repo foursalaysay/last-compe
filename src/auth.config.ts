@@ -1,9 +1,9 @@
+import { compare } from "bcryptjs"
 import type { NextAuthConfig } from "next-auth"
+import { type Provider } from "next-auth/providers"
 import Credentials from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
-import bcrypt from "bcryptjs"
 
-import { type Provider } from "next-auth/providers"
 import { LoginSchema } from "./app/(auth)/login/_types"
 import { getUserByEmail } from "./services/user"
 
@@ -23,7 +23,7 @@ const providers: Provider[] = [
         if (!user || !user.password) return null
 
         // compare the actual password and the hash password
-        const passwordMatch = await bcrypt.compare(password, user.password)
+        const passwordMatch = await compare(password, user.password)
 
         const {
           password: _,

@@ -1,9 +1,11 @@
 "use server"
-import { signIn } from "@/auth"
-import { LoginSchema } from "./_types"
-import { z } from "zod"
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 import { AuthError } from "next-auth"
+import { z } from "zod"
+
+import { signIn } from "@/auth"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
+
+import { LoginSchema } from "./_types"
 
 export const siginInWithCredentials = async (
   data: z.infer<typeof LoginSchema>,

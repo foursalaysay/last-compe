@@ -1,10 +1,10 @@
+import { CheckCircle, Circle, Clock, Home, XCircle } from "lucide-react"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
-import { CheckCircle, Circle, Clock, Home, XCircle } from "lucide-react"
-
-import { TopPerformingProvider } from "./top-performing-provider"
 import TotalUsers from "./card-stats"
+import { TopPerformingProvider } from "./top-performing-provider"
 
 // const totalRevenue = {
 //   lastMonth: 10000,

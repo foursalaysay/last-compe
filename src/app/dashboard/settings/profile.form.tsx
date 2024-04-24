@@ -2,11 +2,12 @@
 
 "use client"
 
-import Link from "next/link"
-import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import Link from "next/link"
+import { useFieldArray, useForm } from "react-hook-form"
+import * as z from "zod"
 
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -24,10 +25,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { useFieldArray, useForm } from "react-hook-form"
 import { toast } from "@/components/ui/use-toast"
+import { cn } from "@/lib/utils"
 
 const profileFormSchema = z.object({
   username: z

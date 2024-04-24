@@ -2,15 +2,15 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
+import { Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-// import { DataTableViewOptions } from "@/app/examples/tasks/components/data-table-view-options"
 
+import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+// import { DataTableViewOptions } from "@/app/examples/tasks/components/data-table-view-options"
 // import { priorities, statuses } from "../data/data"
 import { DataTableViewOptions } from "./data-table-view-options"
-import { Search } from "lucide-react"
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>

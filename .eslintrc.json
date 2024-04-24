@@ -31,9 +31,15 @@
     "@typescript-eslint",
     "react",
     "react-hooks",
-    "import"
+    "import",
+    "simple-import-sort"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "prefer-const": "warn",
     "no-var": "warn",
     "no-unused-vars": "off",

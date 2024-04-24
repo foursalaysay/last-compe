@@ -1,8 +1,8 @@
+// import { Overview } from "./overview";
+import { Home } from "lucide-react"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-// import { Overview } from "./overview";
-
-import { Home } from "lucide-react"
 
 // const totalRevenue = {
 //   lastMonth: 10000,

@@ -1,8 +1,10 @@
+import { Building2, HandHeart, Home } from "lucide-react"
+import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Building2, HandHeart, Home } from "lucide-react"
-import Link from "next/link"
+
 import OrganizationList from "./_components/organization-list"
 
 const OrganizationPage = () => {
