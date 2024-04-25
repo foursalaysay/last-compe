@@ -14,7 +14,12 @@ export default async function SignupPage() {
   return (
     <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2 xl:min-h-screen">
       <div className="relative hidden h-full flex-col bg-muted p-10  dark:border-r lg:flex">
-        <Image src="login.svg" alt="login image" objectFit="contain" fill />
+        <Image
+          src="/public/logo.jpg"
+          alt="login image"
+          objectFit="contain"
+          fill
+        />
         <div className="relative z-20 flex items-center text-lg font-medium">
           <h1 className="text-2xl font-black">
             <Link href={"/"}>

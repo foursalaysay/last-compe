@@ -92,9 +92,20 @@ model Donee {
   userId     String @db.ObjectId
   donationId String @db.ObjectId
 
+  credibility Credibility @default(notAccredited)
+  
+
   user     User     @relation(fields: [userId], references: [id])
   donation Donation @relation(fields: [donationId], references: [id])
 }
+
+enum Credibility {
+  isAccredited
+  notAccredited
+}
+// KYLE ADDITION
+// ORGANIZATIONS SHOULD BE ACCREDITED BY PCNC SO THE ORGANIZATION MODEL SHOULD HAVE A TYPE description
+// OF ACCREDITED OR NOT
 
 // enum Role {
 //   LGU 
