@@ -19,9 +19,9 @@ export const donationColumns: ColumnDef<any>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: "Food",
+    accessorKey: "date",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Food" />
+      <DataTableColumnHeader column={column} title="Date" />
     ),
     cell: ({ row }) => {
       return <span className="truncate ">{row.getValue("fullName")}</span>
