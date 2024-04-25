@@ -1,9 +1,10 @@
 import { HandHeart } from "lucide-react"
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils"
 
 import { sampleData } from "./_components/data"
 import { DataTable } from "./_components/data-table"
@@ -21,7 +22,12 @@ const DonationsDonorView = () => {
             </h2>
             <p className="text-muted-foreground">Here is your donations</p>
           </div>
-          <Button>Add new listing</Button>
+          <Link
+            href={"/dashboard/organizations"}
+            className={cn(buttonVariants({ variant: "default" }))}
+          >
+            Donate Now
+          </Link>
         </div>
         <Separator className="my-6" />
         <DataTable columns={donationColumns} data={sampleData} />

@@ -9,19 +9,19 @@ import { DataTableColumnHeader } from "./data-table-column-header"
 
 export const donationColumns: ColumnDef<any>[] = [
   {
-    accessorKey: "date",
+    accessorKey: "organization",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
+      <DataTableColumnHeader column={column} title="Organization" />
     ),
     cell: ({ row }) => {
-      return <span className=" truncate ">{row.getValue("date")}</span>
+      return <span className=" truncate ">{row.getValue("organization")}</span>
     },
     enableSorting: false,
   },
   {
-    accessorKey: "category",
+    accessorKey: "Food",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Category" />
+      <DataTableColumnHeader column={column} title="Food" />
     ),
     cell: ({ row }) => {
       return <span className="truncate ">{row.getValue("fullName")}</span>

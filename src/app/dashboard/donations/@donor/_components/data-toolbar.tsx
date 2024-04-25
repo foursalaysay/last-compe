@@ -33,7 +33,7 @@ export function DataTableToolbar<TData>({
         <div className="relative">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search users..."
+            placeholder="Search organizations..."
             value={
               (table.getColumn("fullName")?.getFilterValue() as string) ?? ""
             }
