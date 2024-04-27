@@ -5,40 +5,40 @@ import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 
 import { DataTableColumnHeader } from "./data-table-column-header"
+import DonationAction from "./donation-action"
 // import { ServiceAction } from "./service-action"
 
 export const donationColumns: ColumnDef<any>[] = [
+  {
+    accessorKey: "id",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Donation ID" />
+    ),
+    cell: ({ row }) => {
+      return <span className=" truncate ">{row.getValue("id")}</span>
+    },
+    enableSorting: false,
+  },
   {
     accessorKey: "organization",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Organization" />
     ),
     cell: ({ row }) => {
-      return <span className=" truncate ">{row.getValue("organization")}</span>
-    },
-    enableSorting: false,
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
-    ),
-    cell: ({ row }) => {
-      return <span className="truncate ">{row.getValue("fullName")}</span>
+      return <span className="truncate">{row.getValue("organization")}</span>
     },
     enableHiding: false,
   },
   {
-    accessorKey: "email",
+    accessorKey: "donationDate",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="EMAIL" />
+      <DataTableColumnHeader column={column} title="Donation Date" />
     ),
     cell: ({ row }) => {
-      const category = row.original.serviceCategory as any
-
+      const date = new Date(row.getValue("donationDate")).toLocaleDateString()
       return (
         <div className="flex space-x-2">
-          <span className=" truncate ">{row.getValue("email")}</span>
+          <span className=" truncate ">{date}</span>
         </div>
       )
     },
@@ -46,31 +46,19 @@ export const donationColumns: ColumnDef<any>[] = [
   },
 
   {
-    accessorKey: "role",
+    accessorKey: "donorStatus",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="ROLE" />
+      <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
-      return <span className="flex flex-col">{row.getValue("role")}</span>
+      return (
+        <span className="flex flex-col">{row.getValue("donorStatus")}</span>
+      )
     },
     enableSorting: false,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-  },
-  {
-    accessorKey: "createdAt",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="JOINED " />
-    ),
-    cell: ({ row }) => {
-      return (
-        <span className="">
-          {format(row.getValue("createdAt"), "LLL, dd, y")}
-        </span>
-      )
-    },
-    enableSorting: false,
   },
   {
     enableSorting: false,
@@ -79,8 +67,7 @@ export const donationColumns: ColumnDef<any>[] = [
       <DataTableColumnHeader column={column} title="ACTION" />
     ),
     cell: ({ row }) => {
-      // return <ServiceAction id="eheheh" serviceInfo={row.original} />
-      return <Button>Hello</Button>
+      return <DonationAction />
     },
   },
 ]
