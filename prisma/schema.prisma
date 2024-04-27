@@ -35,20 +35,10 @@ model User {
   // sessions      Session[]
   // Optional for WebAuthn support
   // Authenticator Authenticator[]
-  donations     Donation[]
-  participants Donee[]
+  donations Donation[]
 
   @@map("users")
 }
-
-// model Profile {
-//   v      Int    @default(0) @map("__v") @ignore
-//   id     String @id @default(auto()) @map("_id") @db.ObjectId
-//   bio    String
-//   user   User   @relation(fields: [userId], references: [id])
-//   userId String @unique @db.ObjectId
-
-// }
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -74,31 +64,24 @@ model Account {
 }
 
 model Donation {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  ownerId     String   @db.ObjectId
-  title       String
-  description String?
-  img         String
-  quantity    Int
-  due         DateTime
-  doneeId String  @db.ObjectId
-
-  owner User @relation(fields: [ownerId], references: [id])
-  participants Donee[]
+  id                         String    @id @default(auto()) @map("_id") @db.ObjectId
+  donorId                    String    @db.ObjectId
+  recipientId                String    @db.ObjectId
+  donationDate               DateTime  @default(now())
+  donorStatus                String
+  recipientStatus            String
+  donationType               String
+  donationValue              Float
+  donationDetails            String
+  pickupAddress              String
+  notificationStatus         Boolean   @default(false)
+  cancellationReason         String?
+  completionDate             DateTime?
+  donorContactInfo           String
+  recipientContactInfo       String
+  donationPickupInstructions String?
+  donorFeedback              String?
+  recipientFeedback          String?
+  User                       User?     @relation(fields: [userId], references: [id])
+  userId                     String?   @db.ObjectId
 }
-
-model Donee {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  userId     String @db.ObjectId
-  donationId String @db.ObjectId
-
-  user     User     @relation(fields: [userId], references: [id])
-  donation Donation @relation(fields: [donationId], references: [id])
-}
-
-// enum Role {
-//   LGU 
-//   ADMIN
-//   DONATOR
-//   DISTRIBUTOR
-// }
