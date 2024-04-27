@@ -52,7 +52,9 @@ export const donationColumns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <span className="flex flex-col">{row.getValue("donorStatus")}</span>
+        <span className="flex flex-col capitalize">
+          {row.getValue("donorStatus")}
+        </span>
       )
     },
     enableSorting: false,
