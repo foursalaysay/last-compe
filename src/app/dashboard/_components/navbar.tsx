@@ -14,7 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
 
+import { MobileSidebar } from "./mobile-sidebar"
 import ModeToggle from "./mode-toggle"
 import SearchProviderInput from "./search-provider-input"
 
@@ -23,12 +25,12 @@ const Navbar = () => {
   const pathname = usePathname()
 
   return (
-    <div className="sticky w-full border-b px-5 py-4">
-      <div className="flex justify-between">
+    <div className="sticky w-full border-b ">
+      <div className="flex h-20 items-center justify-between px-4 md:px-8">
         <div className="flex w-1/2 items-center">
-          <h1 className="text-lg">
-            Welcome, <span className=" font-bold">Michael Padin</span>
-          </h1>
+          <div className={cn("block lg:!hidden")}>
+            <MobileSidebar />
+          </div>
           {session.data?.user.role === "customer" &&
             pathname.includes("overview") && <SearchProviderInput />}
         </div>

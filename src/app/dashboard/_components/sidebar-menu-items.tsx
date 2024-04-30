@@ -37,7 +37,7 @@ const DashIcon: React.FC<IDashProps> = ({
   return <Icon className={className} size={size} {...props} />
 }
 
-const SidebarMenuItems: React.FC = () => {
+const SidebarMenuItems = () => {
   const pathname = usePathname()
   const { status, data } = useSession({
     required: true,
