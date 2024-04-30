@@ -8,19 +8,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
-// import { DataTableViewOptions } from "@/app/examples/tasks/components/data-table-view-options"
-// import { priorities, statuses } from "../data/data"
-import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
 }
 
-const roles = [
-  { label: "Admin", value: "admin" },
-  { label: "Customer", value: "customer" },
-  { label: "Provider", value: "service_provider" },
-]
+const organization = [{ label: "Patay Gutom", value: "patay-gutom" }]
 
 export function DataTableToolbar<TData>({
   table,
@@ -35,28 +28,38 @@ export function DataTableToolbar<TData>({
           <Input
             placeholder="Search organizations..."
             value={
-              (table.getColumn("fullName")?.getFilterValue() as string) ?? ""
+              (table.getColumn("organization")?.getFilterValue() as string) ??
+              ""
             }
             onChange={(event) =>
-              table.getColumn("fullName")?.setFilterValue(event.target.value)
+              table
+                .getColumn("organization")
+                ?.setFilterValue(event.target.value)
             }
             className=" w-[150px] bg-muted pl-8 lg:w-[250px]"
           />
         </div>
-        {table.getColumn("role") && (
+        {table.getColumn("organization") && (
           <DataTableFacetedFilter
-            column={table.getColumn("role")}
-            title="Roles"
-            options={roles}
+            column={table.getColumn("organization")}
+            title="Organization"
+            options={organization}
           />
         )}
-        {/* {table.getColumn("priority") && (
+        {table.getColumn("donorStatus") && (
           <DataTableFacetedFilter
-            column={table.getColumn("priority")}
-            title="Priority"
-            options={[]}
+            column={table.getColumn("donorStatus")}
+            title="Status"
+            options={[
+              { label: "Submitted", value: "submitted" },
+              { label: "Approved", value: "approved" },
+              { label: "Declined", value: "declined" },
+              { label: "Waiting for pickup", value: "Waiting   pickup" },
+              { label: "Cancelled", value: "cancelled" },
+              { label: "Completed", value: "completed" },
+            ]}
           />
-        )} */}
+        )}
 
         {isFiltered && (
           <Button
@@ -69,7 +72,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      {/* <DataTableViewOptions table={table} /> */}
     </div>
   )
 }
