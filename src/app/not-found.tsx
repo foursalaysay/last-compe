@@ -1,18 +1,35 @@
-import React from "react"
+"use client"
+
+import { useRouter } from "next/navigation"
+
+import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
+  const router = useRouter()
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white py-48">
-      <div className="flex flex-col">
-        <div className="flex flex-col items-center">
-          <div className="text-7xl font-bold text-primary">404</div>
-          <div className="mt-10 text-3xl font-bold md:text-5xl lg:text-6xl xl:text-7xl">
-            This page does not exist
-          </div>
-          <div className="mt-8 text-sm font-medium text-muted-foreground md:text-xl lg:text-2xl">
-            The page you are looking for could not be found.
-          </div>
-        </div>
+    <div className="absolute left-1/2 top-1/2 mb-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
+      <span className="bg-gradient-to-b from-foreground to-transparent bg-clip-text text-[10rem] font-extrabold leading-none text-transparent">
+        404
+      </span>
+      <h2 className="font-heading my-2 text-2xl font-bold">
+        Something&apos;s missing
+      </h2>
+      <p>
+        Sorry, the page you are looking for doesn&apos;t exist or has been
+        moved.
+      </p>
+      <div className="mt-8 flex justify-center gap-2">
+        <Button onClick={() => router.back()} variant="default" size="lg">
+          Go back
+        </Button>
+        <Button
+          onClick={() => router.push("/dashboard/overview")}
+          variant="ghost"
+          size="lg"
+        >
+          Back to Home
+        </Button>
       </div>
     </div>
   )
