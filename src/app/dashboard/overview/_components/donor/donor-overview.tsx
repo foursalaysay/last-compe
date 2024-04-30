@@ -1,6 +1,3 @@
-// import { Overview } from "./overview";
-import { Home } from "lucide-react"
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
@@ -9,11 +6,10 @@ import { TopDonee } from "./top-donee"
 
 const DonorOverview = async () => {
   return (
-    <div className=" space-y-6 p-5 pb-16 ">
+    <div className="flex-1 space-y-4  p-4 pt-6 md:p-8">
       <div className="space-y-0.5">
         <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-          <Home />
-          Overview
+          Hi Michael, Welcome back 👋
         </h2>
         <p className="text-muted-foreground">
           Here is an overview of your account.
