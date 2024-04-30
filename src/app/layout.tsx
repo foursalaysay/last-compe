@@ -5,6 +5,7 @@ import { Inter } from "next/font/google"
 
 import { auth } from "@/auth"
 import SessionProvider from "@/components/session-provider"
+import ThemeProvider from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -29,7 +30,9 @@ export default async function RootLayout({
           defer
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}&libraries=places`}
         ></script>
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SessionProvider session={session}>{children}</SessionProvider>
+        </ThemeProvider>
         <Toaster />
       </body>
     </html>
