@@ -20,7 +20,6 @@ const Profile = () => {
         <div className="">
           <h3 className="font-semibold">{session.data?.user.name}</h3>
           <p className="text-sm">{session.data?.user.email}</p>
-          <p className="text-sm">{session.data?.user.email}</p>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ export default function Home() {
         <div className="flex justify-between  p-5 ">
           <div className="flex flex-row justify-between">
             <h1 className="text-2xl font-black">
-              <span className="text-primary">MiJo </span> Express
+              <span className="text-primary">Share</span> Surplus
             </h1>
           </div>
           <ul className="z-50 flex items-center gap-2">

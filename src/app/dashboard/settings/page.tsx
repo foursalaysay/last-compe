@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator"
 
+import { UpdateForm } from "./account/new-account-form"
 import { ProfileForm } from "./profile.form"
 
 export default function SettingsProfilePage() {
@@ -11,8 +12,10 @@ export default function SettingsProfilePage() {
           This is how others will see you on the site.
         </p>
       </div>
-      <Separator />
-      <ProfileForm />
+      <div>
+        <Separator />
+        <UpdateForm />
+      </div>
     </div>
   )
 }

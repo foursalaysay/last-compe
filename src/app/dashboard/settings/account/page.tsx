@@ -3,6 +3,7 @@ import { Suspense } from "react"
 import { Separator } from "@/components/ui/separator"
 
 import { AccountForm } from "./account-form"
+import { UpdateForm } from "./new-account-form"
 
 export default function SettingsAccountPage() {
   return (
@@ -14,10 +15,12 @@ export default function SettingsAccountPage() {
           timezone.
         </p>
       </div>
-      <Separator />
-      <Suspense fallback={"loading"}>
-        <AccountForm />
-      </Suspense>
+      <div>
+        <Separator />
+        <Suspense fallback={"loading"}>
+          <AccountForm />
+        </Suspense>
+      </div>
     </div>
   )
 }
