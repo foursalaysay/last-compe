@@ -54,7 +54,7 @@ export const SSInputAddress = ({
     <Command className="relative overflow-visible">
       <Input
         disabled={disabled}
-        placeholder="Search place..."
+        placeholder="Cebu City..."
         className="w-full"
         onChange={(e) => handlePlaceValue(e.target.value)}
         onKeyDown={(e) => handleClose(e)}

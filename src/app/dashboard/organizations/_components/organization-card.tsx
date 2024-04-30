@@ -13,6 +13,7 @@ const OrganizationCard = () => {
   const orgInfoLink = "/dashboard/organizations/info/OrgID"
   const orgDonateLink = "/dashboard/organizations/donate/OrgID"
   const sampleOrgName = "Local Food Bank"
+  const sampleContactInfo = "9123456789"
   return (
     <Card className="overflow-hidden">
       <CardContent className="flex flex-col gap-5 p-5">
@@ -46,6 +47,14 @@ const OrganizationCard = () => {
               </p>
             </div>
             <div>
+              <span className="text-xs text-muted-foreground">Contact</span>
+              <p>
+                <a href={`tel:+${sampleContactInfo}`} className="text-xs">
+                  +63{sampleContactInfo}
+                </a>
+              </p>
+            </div>
+            <div>
               <span className="text-xs text-muted-foreground">
                 Preferred food types
               </span>
@@ -53,7 +62,7 @@ const OrganizationCard = () => {
               <ScrollArea className="w-full">
                 <div className="flex gap-2 pb-4">
                   {Array.from({ length: 5 }).map((_, index) => (
-                    <Badge key={index} variant="outline">
+                    <Badge key={index} variant="secondary">
                       {"Vegetables"}
                     </Badge>
                   ))}
@@ -66,10 +75,7 @@ const OrganizationCard = () => {
               {/* <p className="text-sm font-semibold">{`From  ₱${startingPrice.toString()}`}</p> */}
               <Link
                 href={`${orgInfoLink}`}
-                className={cn(
-                  buttonVariants({ variant: "secondary" }),
-                  "w-1/3",
-                )}
+                className={cn(buttonVariants({ variant: "outline" }), "w-1/3")}
               >
                 Info
               </Link>

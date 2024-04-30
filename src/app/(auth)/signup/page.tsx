@@ -2,6 +2,9 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+import CompanyRegisterForm from "./_components/company-register-form"
 import RegisterForm from "./_components/register-form"
 
 export const metadata: Metadata = {
@@ -36,7 +39,28 @@ export default async function SignupPage() {
               Enter your information to create an account
             </p>
           </div>
-          <RegisterForm />
+          <Tabs defaultValue="company" className="lg:w-[400px]">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="company">Donor Company</TabsTrigger>
+              <TabsTrigger value="organization">
+                Recipient Organization
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="company">
+              <p className="py-5">
+                Create a business account on behalf of a company, trust, or
+                institution
+              </p>
+              <CompanyRegisterForm />
+            </TabsContent>
+            <TabsContent value="organization">
+              <p className="py-5">
+                Create an account on behalf of a non-profit organization or
+                charity
+              </p>
+              <RegisterForm />
+            </TabsContent>
+          </Tabs>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link href="/login" className="underline">

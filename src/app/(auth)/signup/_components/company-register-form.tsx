@@ -10,15 +10,12 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
 
 import { RegisterSchema, RegisterType } from "../_types"
 import { register } from "../action"
@@ -34,7 +31,7 @@ import { register } from "../action"
 //   }
 // }
 
-const RegisterForm = () => {
+const CompanyRegisterForm = () => {
   const [isPending, startTransition] = useTransition()
   const form = useForm<RegisterType>({
     resolver: zodResolver(RegisterSchema),
@@ -43,6 +40,7 @@ const RegisterForm = () => {
       email: "",
       password: "",
       confirmPassword: "",
+      role: "COMPANY",
     },
   })
 
@@ -58,22 +56,6 @@ const RegisterForm = () => {
     })
   }
 
-  const getLatLng = async (address) => {
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        address,
-      )}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`,
-    )
-    const data = await response.json()
-
-    if (data.status === "OK") {
-      const { lat, lng } = data.results[0].geometry.location
-      return { lat, lng }
-    } else {
-      throw new Error("Error getting latitude and longitude")
-    }
-  }
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -83,9 +65,9 @@ const RegisterForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Organization Name</FormLabel>
+                <FormLabel>Company Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Local Food Community" {...field} />
+                  <Input placeholder="Four Company" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -136,23 +118,6 @@ const RegisterForm = () => {
 
           <FormField
             control={form.control}
-            name="about"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-base">About</FormLabel>
-                <FormControl>
-                  <Textarea
-                    {...field}
-                    placeholder=" is a successful organization ... "
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -187,4 +152,4 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+export default CompanyRegisterForm
