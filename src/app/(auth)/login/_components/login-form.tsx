@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react"
 import Link from "next/link"
 import React, { useTransition } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -32,11 +33,11 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginType) => {
     startTransition(() => {
       siginInWithCredentials(data).then((res) => {
-        // if (res?.success) {
-        //   toast.success(res.success);
-        // } else {
-        //   toast.error(res.error);
-        // }
+        if (res?.success) {
+          toast.success(res?.success)
+        } else {
+          toast.error(res?.error)
+        }
 
         console.log(res)
       })
