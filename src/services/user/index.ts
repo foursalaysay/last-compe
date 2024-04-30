@@ -1,7 +1,5 @@
-import NextAuth from "next-auth/next"
-import bcrypt from "bcryptjs"
-import { db } from "@/lib/db"
 import { RegisterType } from "@/app/(auth)/signup/_types"
+import { db } from "@/lib/db"
 
 type loginProps = {
   email?: string | undefined
