@@ -20,12 +20,26 @@ export const donationColumns: ColumnDef<any>[] = [
     enableSorting: false,
   },
   {
+    accessorKey: "organizationId",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Organization ID" />
+    ),
+
+    enableHiding: true,
+    enableSorting: false,
+  },
+  {
     accessorKey: "organization",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Organization" />
     ),
     cell: ({ row }) => {
       return <span className="truncate">{row.getValue("organization")}</span>
+    },
+    filterFn: (row, id, value) => {
+      console.log(row.getValue("organizationId"))
+
+      return value.includes(row.getValue("organizationId"))
     },
     enableHiding: false,
   },

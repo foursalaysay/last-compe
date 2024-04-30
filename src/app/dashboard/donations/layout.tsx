@@ -10,11 +10,11 @@ type Props = {
 const DonationLayout = async ({ children, donor, admin, donee }: Props) => {
   const role = "donor"
   return (
-    <div>
+    <div className="h-[calc(100vh-80px)]">
       {role === "donor" && donor}
       {role === "admin" && admin}
       {role === "donee" && donee}
-      <div>{children}</div>
+      <div className="">{children}</div>
     </div>
   )
 }

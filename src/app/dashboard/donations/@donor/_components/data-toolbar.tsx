@@ -12,8 +12,13 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
 }
-
-const organization = [{ label: "Patay Gutom", value: "patay-gutom" }]
+const organization = [
+  { label: "Patay Gutom", value: "patay_gutom" },
+  { label: "Local Food Bank0", value: "Org1" },
+  { label: "Local Food Bank1", value: "Org2" },
+  { label: "Local Food Bank2", value: "Org3" },
+  { label: "Local Food Bank3", value: "Org4" },
+]
 
 export function DataTableToolbar<TData>({
   table,

@@ -16,6 +16,7 @@ import {
 } from "@tanstack/react-table"
 import * as React from "react"
 
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import {
   Table,
   TableBody,
@@ -39,7 +40,9 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState<VisibilityState>({
+      organizationId: false,
+    })
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   )
@@ -70,8 +73,8 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border">
-        <Table>
+      <ScrollArea className="h-[calc(80vh-220px)] rounded-md border">
+        <Table className="relative">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -119,7 +122,8 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-      </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
       <DataTablePagination table={table} />
     </div>
   )
