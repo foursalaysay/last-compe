@@ -1,14 +1,17 @@
 import "./globals.css"
 
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Montserrat, Poppins } from "next/font/google"
 
 import { auth } from "@/auth"
 import SessionProvider from "@/components/session-provider"
 import ThemeProvider from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+})
 
 export const metadata: Metadata = {
   title: "ShareSurplus",

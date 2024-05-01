@@ -1,3 +1,4 @@
+import { isValidPhoneNumber } from "react-phone-number-input"
 import { z } from "zod"
 
 export const RegisterSchema = z
@@ -6,11 +7,18 @@ export const RegisterSchema = z
     email: z.string().email("Invalid email address"),
     address: z.string().min(8, "Address must be at least 1 character long"),
     role: z.string(),
-    contact: z
-      .string()
-      .min(11, "Contact number must be at least 11 characters long"),
+    preferredFoods: z.array(
+      z.object({
+        id: z.string(),
+        text: z.string(),
+      }),
+    ),
+    mobileNumber: z.string().refine(() => true, {
+      message: "Invalid mobile number",
+      path: ["mobileNumber"],
+    }),
     password: z.string().min(8, "Password must be at least 8 characters long"),
-    about: z.string().min(8, "About must be at least 8 characters long"),
+    description: z.string().min(8, "About must be at least 8 characters long"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

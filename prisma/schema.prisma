@@ -18,26 +18,35 @@ type Profile {
 }
 
 model User {
-  v             Int       @default(0) @map("__v") @ignore
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @updatedAt
-  role          String
-  profile       Profile?
-  password      String?
-  address       String?
-
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  createdAt      DateTime?       @default(now())
+  updatedAt      DateTime?       @updatedAt
+  role           String
+  profile        Profile?
+  password       String?
+  address        String?
+  description    String?
+  mobileNumber   String?
+  donations      Donation[]
   // sessions      Session[]
   // Optional for WebAuthn support
   // Authenticator Authenticator[]
-  donations Donation[]
+  Particpant     Particpant[]
+  preferredFoods PreferredFood[]
 
   @@map("users")
+}
+
+model PreferredFood {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId String  @db.ObjectId
+  text   String?
+  User   User    @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -64,17 +73,17 @@ model Account {
 }
 
 model Donation {
-  id                         String    @id @default(auto()) @map("_id") @db.ObjectId
-  donorId                    String    @db.ObjectId
-  recipientId                String    @db.ObjectId
-  donationDate               DateTime  @default(now())
+  id                         String       @id @default(auto()) @map("_id") @db.ObjectId
+  donorId                    String       @db.ObjectId
+  recipientId                String       @db.ObjectId
+  donationDate               DateTime     @default(now())
   donorStatus                String
   recipientStatus            String
   donationType               String
   donationValue              Float
   donationDetails            String
   pickupAddress              String
-  notificationStatus         Boolean   @default(false)
+  notificationStatus         Boolean      @default(false)
   cancellationReason         String?
   completionDate             DateTime?
   donorContactInfo           String
@@ -82,6 +91,15 @@ model Donation {
   donationPickupInstructions String?
   donorFeedback              String?
   recipientFeedback          String?
-  User                       User?     @relation(fields: [userId], references: [id])
-  userId                     String?   @db.ObjectId
+  User                       User?        @relation(fields: [userId], references: [id])
+  userId                     String?      @db.ObjectId
+  particpants                Particpant[]
+}
+
+model Particpant {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  donationId String   @db.ObjectId
+  donation   Donation @relation(fields: [donationId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 }

@@ -1,11 +1,14 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Tag, TagInput } from "emblor"
 import { Loader2 } from "lucide-react"
-import React, { useTransition } from "react"
+import React, { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
 import { SSInputAddress } from "@/components/ss/ss-input-address"
+import { SSPasswordInput } from "@/components/ss/ss-password-input"
+import { SSSinglePhoneINput } from "@/components/ss/ss-single-phone-input"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -16,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 import { RegisterSchema, RegisterType } from "../_types"
 import { register } from "../action"
@@ -32,15 +36,19 @@ import { register } from "../action"
 // }
 
 const CompanyRegisterForm = () => {
+  const [tags, setTags] = useState<Tag[]>([])
   const [isPending, startTransition] = useTransition()
   const form = useForm<RegisterType>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: "",
       email: "",
+      address: "",
+      mobileNumber: "+63",
+      description: "",
       password: "",
       confirmPassword: "",
-      role: "COMPANY",
+      role: "ORGANIZATION",
     },
   })
 
@@ -102,14 +110,58 @@ const CompanyRegisterForm = () => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
-            name="contact"
+            name="mobileNumber"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Contact Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="09*********" {...field} />
+                  <SSSinglePhoneINput {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    placeholder="Description about your company... "
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="preferredFoods"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Preferred Foods To Donate</FormLabel>
+                <FormControl>
+                  <TagInput
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    {...field}
+                    placeholder="Canned Goods"
+                    tags={tags}
+                    setTags={(newTags) => {
+                      setTags(newTags)
+                      form.setValue(
+                        "preferredFoods",
+                        newTags as [Tag, ...Tag[]],
+                      )
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,7 +175,7 @@ const CompanyRegisterForm = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} type="password" />
+                  <SSPasswordInput {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -136,7 +188,7 @@ const CompanyRegisterForm = () => {
               <FormItem>
                 <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
-                  <Input {...field} type="password" />
+                  <SSPasswordInput {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -85,14 +85,14 @@ const LoginForm = () => {
           <Button type="submit" className="w-full">
             {isPending ? <Loader2 className="animate-spin" /> : "Log in"}
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             type="button"
             className="w-full"
             onClick={() => "login"}
           >
             Login with Google
-          </Button>
+          </Button> */}
         </fieldset>
       </form>
     </Form>

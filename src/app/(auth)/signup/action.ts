@@ -4,6 +4,7 @@ import { hash } from "bcryptjs"
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/services/user"
 
+import { dummyOrganizations } from "./_data/data"
 import { RegisterSchema, RegisterType } from "./_types"
 
 export const register = async (data: RegisterType) => {
@@ -13,7 +14,10 @@ export const register = async (data: RegisterType) => {
     return { error: "Invalid fields" }
   }
 
-  const { email, password, name } = parsedData.data
+  // const { email, password, name, address, description, mobileNumber, role } =
+  //   parsedData.data
+  const { email, password, name, address, description, mobileNumber, role } =
+    parsedData.data
 
   const hashedPassword = await hash(password, 10)
 
@@ -21,13 +25,45 @@ export const register = async (data: RegisterType) => {
 
   if (existingUser) return { error: "User already exists" }
 
+  // await Promise.all(
+  //   dummyOrganizations.map(async (org) => {
+  //     await db.user.create({
+  //       data: {
+  //         name: org.name,
+  //         address: org.address,
+  //         mobileNumber: org.mobileNumber,
+  //         description: org.description,
+  //         email: org.email,
+  //         role: org.role,
+  //         password: await hash(org.password, 10),
+  //         preferredFoods: {
+  //           createMany: {
+  //             data: org.preferredFoods.map((food) => ({
+  //               text: food.text,
+  //             })),
+  //           },
+  //         },
+  //       },
+  //     })
+  //   }),
+  // )
+
   await db.user.create({
     data: {
-      email,
-      password: hashedPassword,
       name,
-      address: "test",
-      role: "ADMIN",
+      email,
+      address,
+      mobileNumber,
+      description,
+      role,
+      password: hashedPassword,
+      preferredFoods: {
+        createMany: {
+          data: data.preferredFoods.map((food) => ({
+            text: food.text,
+          })),
+        },
+      },
     },
   })
 
