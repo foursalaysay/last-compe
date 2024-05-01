@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .ngo-profile-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .card-header {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .profile-picture {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+
+      .ngo-name {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+
+      .ngo-type {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .profile-metrics {
+        margin-bottom: 20px;
+      }
+
+      .metric-row {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+      }
+
+      .metric {
+        text-align: center;
+      }
+
+      .metric-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .metric-label {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .profile-details,
+      .profile-preferences {
+        margin-bottom: 20px;
+      }
+
+      .profile-details h3,
+      .profile-preferences h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .profile-preferences ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .profile-preferences li {
+        margin-bottom: 5px;
+      }
+
+      .card-footer {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .btn {
+        background-color: #337ab7;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 0 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ngo-profile-card">
+      <div class="card-header">
+        <img class="profile-picture" src="ngo_logo.png" alt="NGO Logo" />
+        <h2 class="ngo-name">Food Rescue Alliance</h2>
+        <p class="ngo-type">Non-Profit Organization</p>
+      </div>
+      <div class="card-body">
+        <div class="profile-metrics">
+          <div class="metric-row">
+            <div class="metric">
+              <h3 class="metric-value">25,000</h3>
+              <p class="metric-label">Meals Served (Last Year)</p>
+            </div>
+            <div class="metric">
+              <h3 class="metric-value">10</h3>
+              <p class="metric-label">Communities Served</p>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric">
+              <h3 class="metric-value">4.9</h3>
+              <p class="metric-label">Donor Rating (out of 5)</p>
+            </div>
+            <div class="metric">
+              <h3 class="metric-value">95%</h3>
+              <p class="metric-label">On-Time Pick-up Rate</p>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric">
+              <h3 class="metric-value">12,000</h3>
+              <p class="metric-label">Total Donations Received (lbs)</p>
+            </div>
+            <div class="metric">
+              <h3 class="metric-value">3.2</h3>
+              <p class="metric-label">
+                Emissions Prevented (metric tons of CO2e)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="profile-details">
+          <h3>About</h3>
+          <p>
+            Food Rescue Alliance is a non-profit organization dedicated to
+            combating food insecurity and reducing food waste. We collect excess
+            food from donors and distribute it to communities in need.
+          </p>
+        </div>
+        <div class="profile-preferences">
+          <h3>Preferences</h3>
+          <ul>
+            <li>
+              Preferred Food Types: Fresh Produce, Baked Goods, Non-Perishable
+              Items
+            </li>
+            <li>Pick-up Radius: Within 25 miles</li>
+            <li>Special Requirements: Halal, Nut-Free</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn">Contact NGO</button>
+        <button class="btn">View Donations</button>
+      </div>
+    </div>
+  </body>
+</html>

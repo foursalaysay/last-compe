@@ -1,20 +1,43 @@
-import { Building2, HandHeart, Home, MapPin } from "lucide-react"
-import Link from "next/link"
+import { Building2, MapPin } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { auth } from "@/auth"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils"
+import { getAllOrganizations } from "@/services/user"
+import { getOrganizationsNearby } from "@/utils/geocode-address"
 
 import BreadCrumb from "../_components/breadcrumb"
-import OrganizationList from "./_components/organization-list"
+import { OrganizationList } from "./_components/organization-list"
+import SearchOrganizationInput from "./_components/search-organization-input"
+
+const Organizations = async () => {
+  const response = await getAllOrganizations()
+  return response
+}
+
+const OrganizationsNearby = async (userAddress: string, radius: number) => {
+  console.log(
+    `Getting organizations nearby ${userAddress} within ${radius} kilometers`,
+  )
+
+  const response = await getOrganizationsNearby(userAddress, radius)
+  return response
+}
 
 const breadcrumbItems = [
   { title: "Organizations", link: "/dashboard/organizations" },
 ]
 
-const OrganizationPage = () => {
+const OrganizationPage = async () => {
+  const session = await auth()
+  const organizations = await Organizations()
+  const nearbyOrganizations = await OrganizationsNearby(
+    session?.user.address || "",
+    20,
+  )
   return (
     <ScrollArea className="h-[calc(100vh-80px)]">
       <div className="flex-1 space-y-4  p-4 pt-6 md:p-8">
@@ -31,18 +54,28 @@ const OrganizationPage = () => {
           </div>
         </div>
         <Separator className="my-6" />
-        <div className="flex ">
+        <div className="flex flex-col-reverse gap-4 md:flex-row md:gap-0">
           <div className="lg:flex-1 ">
-            <Input placeholder="Search organizations" className="lg:w-1/2" />
+            <SearchOrganizationInput />
           </div>
           <div className="flex items-center">
-            <Button variant={"link"} className="p-0">
+            <div className={cn(buttonVariants({ variant: "link" }), "p-0")}>
               <MapPin size={15} />
-              <span className="ml-2">Carcar City | 20km</span>
-            </Button>
+              <div className="flex flex-col">
+                <span className="ml-2">{session?.user.address}</span>
+                <span className="ml-2">20km</span>
+              </div>
+            </div>
           </div>
         </div>
-        <OrganizationList />
+        <div className="flex flex-col gap-5 overflow-hidden">
+          <div>
+            <h1 className="my-5 font-semibold">Organizations Nearby</h1>
+            <OrganizationList organizations={nearbyOrganizations || []} />
+          </div>
+          <h1 className="my-5 font-semibold">All</h1>
+          <OrganizationList organizations={organizations || []} />
+        </div>
       </div>
     </ScrollArea>
   )

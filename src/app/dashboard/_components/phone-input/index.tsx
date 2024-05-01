@@ -1,3 +1,15 @@
+import parsePhoneNumberFromString, {
+  AsYouType,
+  type CarrierCode,
+  type CountryCallingCode,
+  type CountryCode,
+  type E164Number,
+  type NationalNumber,
+  type NumberType,
+} from "libphonenumber-js"
+import { Check, ChevronsUpDown } from "lucide-react"
+import * as React from "react"
+
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -15,17 +27,7 @@ import {
 } from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
-import parsePhoneNumberFromString, {
-  AsYouType,
-  type CarrierCode,
-  type CountryCallingCode,
-  type E164Number,
-  type NationalNumber,
-  type CountryCode,
-  type NumberType,
-} from "libphonenumber-js"
-import { Check, ChevronsUpDown } from "lucide-react"
-import * as React from "react"
+
 import { countries } from "./countries"
 import { useStateHistory } from "./use-state-history"
 

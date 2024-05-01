@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client"
+
 import { RegisterType } from "@/app/(auth)/signup/_types"
 import { db } from "@/lib/db"
 
@@ -24,36 +26,111 @@ export const getUserById = async (id: string) => {
   }
 }
 
+export const getAllOrganizations = async () => {
+  try {
+    const organizations = await db.user.findMany({
+      where: { role: "ORGANIZATION" },
+      select: {
+        id: true,
+        name: true,
+        address: true,
+        description: true,
+        mobileNumber: true,
+        preferredFoods: {
+          select: {
+            text: true,
+            id: true,
+          },
+        },
+        email: true,
+      },
+    })
+
+    return organizations
+  } catch (error) {
+    return null
+  }
+}
+
+export const getOrganizationBySearch = async (search: string) => {
+  try {
+    const organizations = await db.user.findMany({
+      where: {
+        role: "ORGANIZATION",
+        OR: [
+          { name: { contains: search } },
+          { description: { contains: search } },
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        address: true,
+        description: true,
+        mobileNumber: true,
+        preferredFoods: {
+          select: {
+            text: true,
+            id: true,
+          },
+        },
+        email: true,
+      },
+    })
+
+    return organizations
+  } catch (error) {
+    return null
+  }
+}
+
+export type UserAsOrganization = Prisma.UserGetPayload<{
+  select: {
+    id: true
+    name: true
+    address: true
+    description: true
+    mobileNumber: true
+    preferredFoods: {
+      select: {
+        text: true
+        id: true
+      }
+    }
+    email: true
+  }
+}>
+
 // UPDATED BY JOHN KYLE
 // UPDATING USER WITH THEIR ID
 
-export const updateUserById = async (
-  id: string,
-  newData: Partial<RegisterType>,
-) => {
-  try {
-    // Fetch the existing user record by ID
-    const existingUser = await db.user.findUnique({ where: { id } })
+// export const updateUserById = async (
+//   id: string,
+//   newData: Partial<RegisterType>,
+// ) => {
+//   try {
+//     // Fetch the existing user record by ID
+//     const existingUser = await db.user.findUnique({ where: { id } })
 
-    if (!existingUser) {
-      throw new Error("User not found") // Throw an error if user not found
-    }
+//     if (!existingUser) {
+//       throw new Error("User not found") // Throw an error if user not found
+//     }
 
-    // Merge the existing user data with the new data
-    const updatedUser = { ...existingUser, ...newData }
+//     // Merge the existing user data with the new data
+//     const updatedUser = { ...existingUser, ...newData }
 
-    // Update the user record in the database
-    const updatedRecord = await db.user.update({
-      where: { id },
-      data: updatedUser,
-    })
+//     // Update the user record in the database
+//     const updatedRecord = await db.user.update({
+//       where: { id },
+//       data: updatedUser,
+//     })
 
-    return updatedRecord // Return the updated user record
-  } catch (error) {
-    console.error("Error updating user:", error)
-    return null // Return null if there's an error
-  }
-}
+//     return updatedRecord // Return the updated user record
+//   } catch (error) {
+//     console.error("Error updating user:", error)
+//     return null // Return null if there's an error
+//   }
+// }
 
 // export const login = async (credentials: loginProps) => {
 //   const { password = "", email = "" } = credentials;
