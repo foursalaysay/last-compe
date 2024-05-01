@@ -1,16 +1,15 @@
-import { Building2, HandHeart, Home } from "lucide-react"
+import { Building2, Home, ShoppingBasket } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
+import BreadCrumb from "@/app/dashboard/_components/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
 
-import BreadCrumb from "../../_components/breadcrumb"
-import ParticipationList from "../../(org-routes)/participation/_components/participation-list"
-// import { getOrgInfo, sendOrgData } from "../_actions/action"
+import ParticipationList from "../_components/participation-list"
 
 const breadcrumbItems = [
   { title: "Participation", link: "/dashboard/participation" },
@@ -27,7 +26,7 @@ export type Donation = {
   doneeId: string
 }
 
-const DonationsDoneeView = ({ donations }: { donations: Donation[] }) => {
+const ParticipationPage = ({ donations }: { donations: Donation[] }) => {
   // const [donationsList, setDonationsList] = useState([])
 
   // useEffect(() => {
@@ -41,11 +40,11 @@ const DonationsDoneeView = ({ donations }: { donations: Donation[] }) => {
       <div className="flex w-full justify-between space-y-0.5">
         <div className="">
           <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-            <Building2 />
+            <ShoppingBasket />
             Product Listings
           </h2>
           <p className="text-muted-foreground">
-            Here are the list of organizations you want to donate
+            Here are the product listing that you could participate
           </p>
         </div>
       </div>
@@ -55,4 +54,4 @@ const DonationsDoneeView = ({ donations }: { donations: Donation[] }) => {
   )
 }
 
-export default DonationsDoneeView
+export default ParticipationPage

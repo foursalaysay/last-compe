@@ -12,6 +12,7 @@ import {
   SendHorizontal,
   Settings,
   Users,
+  UsersRound,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -81,7 +82,10 @@ const SidebarMenuItems = () => {
         //   : []),
         // { name: "Goods", url: "goods", icon: Inbox },
         ...(role === "ORGANIZATION" || role === "ADMIN"
-          ? [{ name: "Donations", url: "donations", icon: HandHeart }]
+          ? [
+              { name: "Donations", url: "donations", icon: HandHeart },
+              { name: "Participation", url: "participation", icon: UsersRound },
+            ]
           : []),
         // ...(role !== "admin"
         //   ? [{ name: "Appointments", url: "appointments", icon: Calendar }]

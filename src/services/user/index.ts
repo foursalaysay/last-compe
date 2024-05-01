@@ -17,6 +17,24 @@ export const getUserByEmail = async (email: string) => {
   }
 }
 
+// GET INFO TO SAVE
+export const getOrgForParticipation = async (id: string) => {
+  try {
+    const orgPart = db.user.findUnique({
+      where: { id, role: "ORGANIZATION" },
+      select: {
+        id: true,
+        name: true,
+        address: true,
+        email: true,
+      },
+    })
+    return orgPart
+  } catch (error) {
+    return null
+  }
+}
+
 export const getUserById = async (id: string) => {
   try {
     const user = db.user.findUnique({ where: { id } })
