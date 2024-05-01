@@ -1,5 +1,5 @@
 "use client"
-import { MapPin } from "lucide-react"
+import { Info, MapPin } from "lucide-react"
 import Link from "next/link"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -44,7 +44,15 @@ const OrganizationCard = ({
           <div className="flex flex-col gap-2 ">
             <div>
               <span className="text-xs text-muted-foreground">About</span>
-              <p className="text-xs">{`${description?.slice(0, 100)}...`}</p>
+              <p className="text-xs">
+                {`${description?.slice(0, 100)}... `}
+                <Link
+                  href={`/dashboard/organizations/info/${id}`}
+                  className={`text-primary underline-offset-4 hover:underline`}
+                >
+                  More Info
+                </Link>
+              </p>
             </div>
             <div>
               <span className="text-xs text-muted-foreground">Contact</span>
@@ -80,12 +88,7 @@ const OrganizationCard = ({
       <CardFooter>
         <div className="flex w-full flex-col gap-2 md:flex-row">
           {/* <p className="text-sm font-semibold">{`From  ₱${startingPrice.toString()}`}</p> */}
-          <Link
-            href={`/dashboard/organizations/info/${id}`}
-            className={cn(buttonVariants({ variant: "outline" }))}
-          >
-            Info
-          </Link>
+
           <Link
             href={`/dashboard/organizations/donate/${id}`}
             className={cn(buttonVariants({ variant: "default" }), "flex-1")}

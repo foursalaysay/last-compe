@@ -84,6 +84,83 @@ export const getOrganizationBySearch = async (search: string) => {
   }
 }
 
+export type OrganizationDetails = Prisma.UserGetPayload<{
+  select: {
+    createdAt: true
+    id: true
+    name: true
+    address: true
+    image: true
+    description: true
+    mobileNumber: true
+    preferredFoods: {
+      select: {
+        text: true
+        id: true
+      }
+    }
+    email: true
+    donations: {
+      where: { recipientStatus: "Completed" }
+      select: {
+        _count: true
+        completionDate: true
+        donor: {
+          select: {
+            name: true
+            image: true
+            address: true
+            email: true
+          }
+        }
+      }
+    }
+  }
+}>
+
+export const getOrganizationById = async (id: string) => {
+  try {
+    const organization = await db.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        createdAt: true,
+        name: true,
+        address: true,
+        image: true,
+        description: true,
+        mobileNumber: true,
+        preferredFoods: {
+          select: {
+            text: true,
+            id: true,
+          },
+        },
+        email: true,
+        donations: {
+          where: { recipientStatus: "Completed" },
+          select: {
+            _count: true,
+            completionDate: true,
+            donor: {
+              select: {
+                name: true,
+                image: true,
+                address: true,
+                email: true,
+              },
+            },
+          },
+        },
+      },
+    })
+
+    return organization
+  } catch (error) {
+    return null
+  }
+}
+
 export type UserAsOrganization = Prisma.UserGetPayload<{
   select: {
     id: true
