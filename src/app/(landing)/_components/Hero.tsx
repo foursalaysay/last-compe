@@ -1,6 +1,8 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
+import Link from "next/link"
 
 import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 import { HeroCards } from "./HeroCards"
 
@@ -30,7 +32,15 @@ export const Hero = () => {
         </p>
 
         <div className="space-y-4 md:space-x-4 md:space-y-0">
-          <Button className="w-full md:w-1/3">Get Started</Button>
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              `w-full md:w-1/3`,
+            )}
+          >
+            Get Started
+          </Link>
 
           <a
             href="https://github.com/leoMirandaa/shadcn-landing-page.git"
