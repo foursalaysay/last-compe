@@ -9,7 +9,6 @@ import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
 
 import BreadCrumb from "../../_components/breadcrumb"
-import { getOrgInfo, sendOrgData } from "../_actions/action"
 import ParticipationList from "./_components/participation-list"
 
 const breadcrumbItems = [

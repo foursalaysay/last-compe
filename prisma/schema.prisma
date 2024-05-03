@@ -33,6 +33,7 @@ model User {
   description    String?
   mobileNumber   String?
   donations      Donation[]
+  valid          String?
   // sessions      Session[]
   // Optional for WebAuthn support
   // Authenticator Authenticator[]
