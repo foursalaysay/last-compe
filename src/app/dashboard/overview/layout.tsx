@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react"
 import React from "react"
 
 import { auth } from "@/auth"
@@ -10,7 +11,7 @@ type Props = {
   recipient: React.ReactNode
 }
 
-const DonationLayout = async ({ children, donor, admin, recipient }: Props) => {
+const OverviewLayout = async ({ children, donor, admin, recipient }: Props) => {
   const session = await auth()
   const role = session?.user?.role
 
@@ -27,4 +28,4 @@ const DonationLayout = async ({ children, donor, admin, recipient }: Props) => {
   )
 }
 
-export default DonationLayout
+export default OverviewLayout

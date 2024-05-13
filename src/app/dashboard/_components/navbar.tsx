@@ -1,11 +1,11 @@
 "use client"
 
-import { Search } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut, useSession } from "next-auth/react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { buttonVariants } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +35,14 @@ const Navbar = () => {
             pathname.includes("overview") && <SearchProviderInput />}
         </div>
         <div className="flex gap-3">
+          {session?.data!.user.role === "DONOR" && (
+            <Link
+              href={"/dashboard/donations/create"}
+              className={cn(buttonVariants({ variant: "default" }))}
+            >
+              Donate Now
+            </Link>
+          )}
           <ModeToggle />
           {/* <Button variant={"ghost"} size="icon">
             <MessageSquare />
@@ -45,6 +53,7 @@ const Navbar = () => {
           <Button variant={"ghost"} size="icon">
             <Info />
           </Button> */}
+
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>

@@ -1,15 +1,11 @@
 "use client"
-import { ScrollArea } from "@radix-ui/react-scroll-area"
 import {
   Bell,
-  Briefcase,
   Building2,
   HandHeart,
-  Home,
   HomeIcon,
   LucideIcon,
   MessageCircle,
-  SendHorizontal,
   Settings,
   Users,
 } from "lucide-react"
@@ -80,20 +76,22 @@ const SidebarMenuItems = () => {
         //   ? [{ name: "Providers", url: "providers", icon: Briefcase }]
         //   : []),
         // { name: "Goods", url: "goods", icon: Inbox },
-        ...(role === "ORGANIZATION" || role === "ADMIN"
+        ...(role === "DONOR" || role === "ADMIN" || role === "ORGANIZATION"
           ? [{ name: "Donations", url: "donations", icon: HandHeart }]
           : []),
         // ...(role !== "admin"
         //   ? [{ name: "Appointments", url: "appointments", icon: Calendar }]
         //   : []),
-        ...(role === "admin"
+        ...(role === "ADMIN"
           ? [{ name: "Users", url: "users", icon: Users }]
           : []),
-        { name: "Organizations", url: "organizations", icon: Building2 },
+        ...(role === "DONOR"
+          ? [{ name: "Organizations", url: "organizations", icon: Building2 }]
+          : []),
         { name: "Messages", url: "messages", icon: MessageCircle },
         { name: "Notifications", url: "notifications", icon: Bell },
 
-        ...(role === "admin"
+        ...(role === "ADMIN"
           ? [{ name: "Reports", url: "reports", icon: Users }]
           : []),
       ],

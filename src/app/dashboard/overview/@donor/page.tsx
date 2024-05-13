@@ -1,15 +1,19 @@
+import { CheckCircle, Clock, User, XCircle } from "lucide-react"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
-import { RecentDonations } from "./recent-donations"
-import { TopDonee } from "./top-donee"
+import { DonationsOverview } from "../_components/donor/donations-overview"
+import { RecentDonations } from "../_components/donor/recent-donations"
+import { TopDonee } from "../_components/donor/top-donee"
+import { data } from "../data"
 
 const DonorOverview = async () => {
   return (
     <div className="flex-1 space-y-4  p-4 pt-6 md:p-8">
       <div className="space-y-0.5">
         <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-          Hi Michael, Donor Company 👋
+          Hi Donor Company, Welcome back 👋
         </h2>
         <p className="text-muted-foreground">
           Here is an overview of your account.
@@ -22,84 +26,53 @@ const DonorOverview = async () => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Total Donations
-              </CardTitle>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M17 14h.01" />
-                <path d="M7 7h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">25</div>
-              <p className="text-xs text-muted-foreground">
-                +180% from last month
-                {/* {averageRating.lastMonth} from last month */}
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Active Donations
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">25</div>
-              <p className="text-xs text-muted-foreground">
-                +180% from last month
-                {/* {averageRating.lastMonth} from last month */}
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
                 Pending Donations
               </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg>
+              <div className="flex items-center rounded-full bg-[#FFBF00] p-2 text-white">
+                <Clock size={20} />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">25</div>
               <p className="text-xs text-muted-foreground">
-                +180% from last month
+                <span className="font-semibold text-green-500 ">+180%</span>{" "}
+                from last month
+                {/* {averageRating.lastMonth} from last month */}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Assigned Donations
+              </CardTitle>
+              <div className="flex items-center rounded-full bg-primary p-2 text-white">
+                <User size={20} />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">25</div>
+              <p className="text-xs text-muted-foreground">
+                <span className="font-semibold text-green-500 ">+180%</span>{" "}
+                from last month
+                {/* {averageRating.lastMonth} from last month */}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Cancelled Donations
+              </CardTitle>
+              <div className="flex items-center rounded-full bg-[#D92027] p-2 text-white">
+                <XCircle size={20} />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">25</div>
+              <p className="text-xs text-muted-foreground">
+                <span className="font-semibold text-green-500 ">+180%</span>{" "}
+                from last month
                 {/* {averageRating.lastMonth} from last month */}
               </p>
             </CardContent>
@@ -109,33 +82,29 @@ const DonorOverview = async () => {
               <CardTitle className="text-sm font-medium">
                 Completed Donations
               </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
-                <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
-              </svg>
+              <div className="flex items-center rounded-full bg-[#28A745] p-2 text-white">
+                <CheckCircle size={20} />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">25</div>
               <p className="text-xs text-muted-foreground">
-                +180% from last month
+                <span className="font-semibold text-green-500 ">+180%</span>{" "}
+                from last month
                 {/* {averageRating.lastMonth} from last month */}
               </p>
             </CardContent>
           </Card>
         </div>
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-          <RecentDonations />
+          <Card className="col-span-7">
+            <CardHeader>
+              <CardTitle>Overview</CardTitle>
+            </CardHeader>
+            <CardContent className="pl-2">
+              <DonationsOverview data={data} />
+            </CardContent>
+          </Card>
           <TopDonee />
 
           {/* <Card className="col-span-3">

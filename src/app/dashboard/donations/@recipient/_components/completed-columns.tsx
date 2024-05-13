@@ -2,13 +2,14 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 import { DataTableColumnHeader } from "./data-table-column-header"
 import DonationAction from "./donation-action"
 // import { ServiceAction } from "./service-action"
 
-export const donationColumns: ColumnDef<any>[] = [
+export const completedColumns: ColumnDef<any>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
@@ -20,21 +21,21 @@ export const donationColumns: ColumnDef<any>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: "organizationId",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Organization ID" />
-    ),
-
-    enableHiding: true,
-    enableSorting: false,
-  },
-  {
     accessorKey: "organization",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Organization" />
+      <DataTableColumnHeader column={column} title="Recipient" />
     ),
     cell: ({ row }) => {
       return <span className="truncate">{row.getValue("organization")}</span>
+    },
+  },
+  {
+    accessorKey: "title",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Title" />
+    ),
+    cell: ({ row }) => {
+      return <span className="truncate">{row.getValue("title")}</span>
     },
     filterFn: (row, id, value) => {
       console.log(row.getValue("organizationId"))
@@ -44,12 +45,14 @@ export const donationColumns: ColumnDef<any>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "donationDate",
+    accessorKey: "dateSubmitted",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Donation Date" />
+      <DataTableColumnHeader column={column} title="Date Submitted" />
     ),
     cell: ({ row }) => {
-      const date = new Date(row.getValue("donationDate")).toLocaleDateString()
+      const date =
+        format(new Date(row.getValue("dateSubmitted")), "MM/dd/yyyy") ||
+        format(Date.now(), "MM/dd/yyyy")
       return (
         <div className="flex space-x-2">
           <span className=" truncate ">{date}</span>
@@ -66,9 +69,9 @@ export const donationColumns: ColumnDef<any>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <span className="flex flex-col capitalize text-white">
+        <Badge className="bg-[#20c997] text-white hover:bg-[#20c997]">
           {row.getValue("donorStatus")}
-        </span>
+        </Badge>
       )
     },
     enableSorting: false,

@@ -31,7 +31,7 @@ import { pendingColumns } from "./_components/pending-columns"
 
 const breadcrumbItems = [{ title: "Donations", link: "/dashboard/donations" }]
 
-const DonationsDonorView = () => {
+const RecipientPageView = () => {
   return (
     <div className="m-auto w-full  space-y-4 overflow-hidden p-4 pt-6 md:p-8">
       <BreadCrumb items={breadcrumbItems} />
@@ -55,8 +55,8 @@ const DonationsDonorView = () => {
 
         <Tabs defaultValue="pending">
           <TabsList className="flex w-full lg:grid lg:w-1/2 lg:grid-cols-4">
-            <TabsTrigger value="pending">Pending</TabsTrigger>
-            <TabsTrigger value="assigned">Assigned</TabsTrigger>
+            <TabsTrigger value="pending">Received</TabsTrigger>
+            {/* <TabsTrigger value="assigned">Assigned</TabsTrigger> */}
             <TabsTrigger value="completed">Completed</TabsTrigger>
             <TabsTrigger value="cancelled">Cancelled</TabsTrigger>
           </TabsList>
@@ -94,4 +94,4 @@ const DonationsDonorView = () => {
   )
 }
 
-export default DonationsDonorView
+export default RecipientPageView
